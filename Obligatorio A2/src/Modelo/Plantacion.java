@@ -1,42 +1,43 @@
 package Modelo;
 
-public class Plantacion {
+public class Plantacion extends Punto {
 	//Properties
-	private Productor propietario;
+	private String CIProductor;
 	private String tipo;
-	private double produccionMensual;
+	private int produccionMensual;
+	
 	
 	
 	//Constructor
-	public Plantacion(Productor propietario, String tipo, double produccionMensual) {
-		super();
-		this.propietario = propietario;
+	public Plantacion(double coordenadaX, double coordenadaY, String nombre, String ciProductor, String tipo, int produccionMensual) {
+		super(coordenadaX,coordenadaY,nombre);
+		this.CIProductor = ciProductor;
 		this.tipo = tipo;
 		this.produccionMensual = produccionMensual;
 	}
 
 	//Getters and Setters
-	public Productor getPropietario() {
-		return propietario;
-	}
-
-	public void setPropietario(Productor propietario) {
-		this.propietario = propietario;
-	}
-
 	public String getTipo() {
 		return tipo;
+	}
+
+	public String getCIProductor() {
+		return CIProductor;
+	}
+
+	public void setCIProductor(String cIProductor) {
+		CIProductor = cIProductor;
 	}
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 
-	public double getProduccion() {
+	public int getProduccion() {
 		return produccionMensual;
 	}
 
-	public void setProduccion(double produccion) {
+	public void setProduccion(int produccion) {
 		this.produccionMensual = produccion;
 	}
 }
