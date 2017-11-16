@@ -26,6 +26,7 @@ public class Grafo {
 	
 	public void agregarArista(int origen, int destino, int peso) {
 		this.listaAdyacencia[origen].insertar(destino, peso);
+		
 	}
 
 	public void agregarVertice(int v) {

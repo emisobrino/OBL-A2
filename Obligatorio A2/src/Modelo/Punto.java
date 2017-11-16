@@ -13,6 +13,10 @@ public class Punto {
 		this.nombre= nombre;
 	}
 
+	public Punto() {
+		
+	}
+
 	//Getters and Setters
 	public double getCoordenadaX() {
 		return coordenadaX;
