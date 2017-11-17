@@ -2,6 +2,10 @@ package Modelo;
 
 import java.util.regex.Pattern;
 
+import Utilidades.CedulaValidator;
+import Utilidades.CelularValidator;
+import Utilidades.EmailValidator;
+
 public class Productor {
 	//Properties
 	private String cedula;
@@ -78,5 +82,26 @@ public class Productor {
 	public void setCelular(String celular) {
 		this.celular = celular;
 	}
+	
+	
+	//Validaciones
+	// Validar celular
+		public boolean validarCelular() {
+			CelularValidator celValidar = new CelularValidator();
+			return celValidar.validate(this.celular);
+		}
+
+		// Validar cedula
+		public boolean validarCedula() {
+			CedulaValidator cedulaValidar = new CedulaValidator();
+			return cedulaValidar.validate(this.cedula);
+		}
+
+		// Validar email
+		public boolean validarEmail() {
+			EmailValidator emailValidar = new EmailValidator();
+
+			return emailValidar.validate(this.email);
+		}
 	
 }

@@ -9,11 +9,11 @@ public class Plantacion extends Punto {
 	
 	
 	//Constructor
-	public Plantacion(double coordenadaX, double coordenadaY, String nombre, String ciProductor, String tipo, int produccionMensual) {
+	public Plantacion(double coordenadaX, double coordenadaY, String nombre, String ciProductor,  int produccionMensual) {
 		super(coordenadaX,coordenadaY,nombre);
 		this.CIProductor = ciProductor;
-		this.tipo = tipo;
 		this.produccionMensual = produccionMensual;
+		// acordarse del tipo al setear en las pruebas
 	}
 
 	//Getters and Setters
