@@ -19,6 +19,18 @@ public class NodoLista {
 	}
 	
 	
+	
+	// contructor vacio
+	public NodoLista() {
+		
+		this.nodo = null;
+		this.distancia = 0;
+		this.siguiente = null;
+	}
+
+
+
+
 	public Punto getNodo() {
 		return nodo;
 	}

@@ -1,5 +1,7 @@
 package Grafo;
 
+import Modelo.Punto;
+
 public class Grafo {
 
 	private int size;
@@ -25,6 +27,14 @@ public class Grafo {
 	}
 	
 	public void agregarArista(int origen, int destino, int peso) {
+		//preguntar recursivo hasta que siguiente sea null
+		//Punto puntoDestino = Hash.devolverPunto(destino);
+		//NodoLista n = new NodoLista(puntoDestino);
+		//n.setDistancia(distancia);
+		//listaAdyacencia[origen].getInicio().setSiguiente(n);
+		//setear en proximo en null?
+		
+		//hacer lo mismo para el destino con el punto origen
 		this.listaAdyacencia[origen].insertar(destino, peso);
 		
 	}
@@ -62,7 +72,12 @@ public class Grafo {
 		return this.usados[v];
 	}
 
-	
+	//para agregar un punto al grafo 
+	// llamar tambien al agregar vertice cuando se agregue
+	public void insertar(Punto p, int pos) {		
+		listaAdyacencia[pos].agregarPunto(p);
+				
+	}
 	
 	
 	
