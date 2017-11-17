@@ -79,6 +79,20 @@ public class Grafo {
 				
 	}
 	
+	public boolean existePosicion(Double coordX, Double coordY) {
+		
+		return false;
+	}
+	public boolean isFull() {
+		
+		return cantNodos==size;
+	}
+	
+	public void ingresar(Punto punto) {
+		
+		
+	}
+	
 	
 	
 	
