@@ -1,26 +1,52 @@
 package Grafo;
 
+import Hash.Hash;
 import Modelo.Punto;
 
 public class Grafo {
 
 	private int size;
-	private int cantNodos;
+	private int cantNodosActual;
+	private int largo;
 	private ListAdy [] listaAdyacencia;
 	private boolean[] usados;
+	private Hash mapa;
 	
 	
 	public Grafo (int n) {
 		
-		this.size=0;
-		this.cantNodos=n;
-		this.listaAdyacencia = new ListAdy[this.cantNodos+1];
-		for (int i = 0; i < this.cantNodos; i++) {
+		this.size=n;
+		this.cantNodosActual=0;
+		this.largo = calculoLargo(n*2);
+		this.listaAdyacencia = new ListAdy[this.largo];
+		for (int i = 0; i < this.largo; i++) {
 			this.listaAdyacencia[i]= new ListAdy();
 		}
-		this.usados = new boolean[this.cantNodos+1];
+		this.mapa = new Hash(largo);
+		this.usados = new boolean[this.largo];
 	}
 	
+	private int calculoLargo(int i) {
+		if (esPrimo(i)) {
+			return i;
+		}else {
+			return calculoLargo(++i);
+		}
+	}
+
+	private boolean esPrimo(int i) {
+		int aux=0;
+		for (int j = 1; j < (i+1); j++) {
+			if (i%j==0) {
+				aux++;
+			}
+		}
+		if (aux!=2) {
+			return false;
+		}
+		return true;
+	}
+
 	public boolean sonAdyacentes (int a, int b) {
 		return this.listaAdyacencia[a].pertenece(b);
 		
@@ -41,7 +67,7 @@ public class Grafo {
 
 	public void agregarVertice(int v) {
 		this.usados[v]=true;
-		this.size ++;
+		
 	}
 
 	public void eliminarArista(int origen, int destino) {
@@ -60,7 +86,7 @@ public class Grafo {
 		//Elimino las aristas donde v es miembro
 		this.listaAdyacencia[v] = new ListAdy();	
 		//BUSCAR EN TODOS LOS VERTICES LA ARISTA
-		for (int i = 1; i<=cantNodos; i++)
+		for (int i = 1; i<=cantNodosActual; i++)
 			this.listaAdyacencia[i].eliminar(v);	
 	}
 
@@ -72,12 +98,7 @@ public class Grafo {
 		return this.usados[v];
 	}
 
-	//para agregar un punto al grafo 
-	// llamar tambien al agregar vertice cuando se agregue
-	public void insertar(Punto p, int pos) {		
-		listaAdyacencia[pos].agregarPunto(p);
-				
-	}
+	
 	
 	public boolean existePosicion(Double coordX, Double coordY) {
 		
@@ -85,14 +106,73 @@ public class Grafo {
 	}
 	public boolean isFull() {
 		
-		return cantNodos==size;
+		return cantNodosActual==size;
 	}
 	
 	public void ingresar(Punto punto) {
-		
+		if ( punto!= null) {
+			int pos= dispersion(punto.getCoordenadaX(), punto.getCoordenadaY());
+			this.listaAdyacencia[pos].agregarPunto(punto);
+			agregarVertice(pos);
+			this.mapa.agregarNodo(pos,punto);
+			cantNodosActual++;
+		}
 		
 	}
-	
+
+	public int getLargo() {
+		return largo;
+	}
+
+	public void setLargo(int largo) {
+		this.largo = largo;
+	}
+
+	public int getSize() {
+		return size;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
+	}
+		
+	public int getCantNodosActual() {
+		return cantNodosActual;
+	}
+
+	public void setCantNodosActual(int cantNodosActual) {
+		this.cantNodosActual = cantNodosActual;
+	}
+
+	public ListAdy[] getListaAdyacencia() {
+		return listaAdyacencia;
+	}
+
+	public void setListaAdyacencia(ListAdy[] listaAdyacencia) {
+		this.listaAdyacencia = listaAdyacencia;
+	}
+
+	public boolean[] getUsados() {
+		return usados;
+	}
+
+	public void setUsados(boolean[] usados) {
+		this.usados = usados;
+	}
+
+	public Hash getMapa() {
+		return mapa;
+	}
+
+	public void setMapa(Hash mapa) {
+		this.mapa = mapa;
+	}
+
+	public int dispersion(double coordX, double coordY) {
+		double valor= (coordX + coordY)*10000;
+		int pos = (int)Math.abs(Math.round( (valor % this.largo) ) );
+		return pos;
+	}
 	
 	
 	

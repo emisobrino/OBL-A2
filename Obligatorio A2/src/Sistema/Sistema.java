@@ -14,13 +14,18 @@ import Utilidades.EmailValidator;
 public class Sistema implements ISistema {
 
 	// Properties
-	private Grafo grafo = new Grafo(10);
-	private ABBProductor arbolProductor = new ABBProductor();
+	private Grafo grafo ;
+	private ABBProductor arbolProductor ;
 
 	@Override
 	public Retorno inicializarSistema(int cantPuntos) {
 		Retorno ret = new Retorno();
-
+		grafo= new Grafo(5);
+		arbolProductor = new ABBProductor();
+		//largo del array y hash
+		System.out.println(grafo.getLargo());
+		//cantidad de nodos
+		System.out.println(grafo.getSize());
 		ret.resultado = Resultado.NO_IMPLEMENTADA;
 
 		return ret;
@@ -81,6 +86,14 @@ public class Sistema implements ISistema {
 		if (!grafo.isFull()) {
 			if (!grafo.existePosicion(coordX, coordY)) {
 				grafo.ingresar(ciudad);
+				//para prueba el for
+				for (int i = 0; i < grafo.getListaAdyacencia().length; i++) {
+					if (grafo.getListaAdyacencia()[i].getInicio().getNodo()==null) {
+						System.out.println(i);
+						System.out.println(grafo.getMapa().getTablaHash()[i].getDato().getNombre());
+					}
+						
+				}
 				ret.resultado = Resultado.OK;
 			} else {
 				ret.resultado = Resultado.ERROR_2;
