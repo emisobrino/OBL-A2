@@ -44,6 +44,22 @@ public class Punto {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+	 @Override
+	   public boolean equals(Object p){
+	    boolean result;
+	    if((p == null) || (getClass() != p.getClass())){
+	        result = false;
+	    } 
+	    else{
+	        Punto pto = (Punto)p;
+	        result = this.coordenadaX == pto.getCoordenadaX() && this.coordenadaY == pto.getCoordenadaY();
+	    } 
+
+	    return result;
+	} 
+	
+	
 	
 	
 	

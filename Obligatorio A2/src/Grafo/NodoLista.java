@@ -10,17 +10,17 @@ public class NodoLista {
 	
 	
 
-	//contructor inicial
-	public NodoLista(Punto nodo) {
+	//contructor para tramo
+	public NodoLista(Punto nodo, int peso) {
 		
 		this.nodo = nodo;
-		this.distancia = 0;
+		this.distancia = peso;
 		this.siguiente = null;
 	}
 	
 	
 	
-	// contructor vacio
+	// contructor inicial
 	public NodoLista() {
 		
 		this.nodo = null;
