@@ -5,6 +5,7 @@ import Modelo.Punto;
 
 public class Grafo {
 
+	//Properties
 	private int size;
 	private int cantNodosActual;
 	private int largo;
@@ -12,7 +13,7 @@ public class Grafo {
 	private boolean[] usados;
 	private Hash mapa;
 	
-	
+	//Constructor
 	public Grafo (int n) {
 		
 		this.size=n;
@@ -26,6 +27,7 @@ public class Grafo {
 		this.usados = new boolean[this.largo];
 	}
 	
+	//Calcular largo
 	private int calculoLargo(int i) {
 		if (esPrimo(i)) {
 			return i;
@@ -34,6 +36,7 @@ public class Grafo {
 		}
 	}
 
+	//Es primo
 	private boolean esPrimo(int i) {
 		int aux=0;
 		for (int j = 1; j < (i+1); j++) {
@@ -47,11 +50,13 @@ public class Grafo {
 		return true;
 	}
 
+	//Son adyacntes
 	public boolean sonAdyacentes (int a, int b) {
 		return this.listaAdyacencia[a].pertenece(b);
 		
 	}
 	
+	//Agregar arista
 	public void agregarArista(int origen, int destino, int peso) {
 		//preguntar recursivo hasta que siguiente sea null
 		//Punto puntoDestino = Hash.devolverPunto(destino);
@@ -65,20 +70,23 @@ public class Grafo {
 		
 	}
 
+	//Agregar vertice
 	public void agregarVertice(int v) {
 		this.usados[v]=true;
 		
 	}
 
+	//Eliminar arista
 	public void eliminarArista(int origen, int destino) {
 		this.listaAdyacencia[origen].eliminar(destino);	
 	}
 
+	//Es vacio
 	public boolean esVacio() {
 		return this.size==0;
 	}
 
-	
+	//Eliminar vertice
 	public void eliminarVertice(int v) {
 		this.usados[v]=false;
 		this.size --;
@@ -90,25 +98,29 @@ public class Grafo {
 			this.listaAdyacencia[i].eliminar(v);	
 	}
 
+	//Vertices adyacentes
 	public ListAdy verticesAdyacentes(int v) {
 		return this.listaAdyacencia[v];
 	}
 
+	//Esta vertice
 	public boolean estaVertice(int v) {
 		return this.usados[v];
 	}
 
-	
-	
+	//Existe posicion
 	public boolean existePosicion(Double coordX, Double coordY) {
 		
 		return false;
 	}
+	
+	//Esta lleno
 	public boolean isFull() {
 		
 		return cantNodosActual==size;
 	}
 	
+	//Ingresar
 	public void ingresar(Punto punto) {
 		if ( punto!= null) {
 			int pos= dispersion(punto.getCoordenadaX(), punto.getCoordenadaY());
@@ -117,9 +129,16 @@ public class Grafo {
 			this.mapa.agregarNodo(pos,punto);
 			cantNodosActual++;
 		}
-		
 	}
 
+	//Dispersion
+	public int dispersion(double coordX, double coordY) {
+		double valor= (coordX + coordY)*10000;
+		int pos = (int)Math.abs(Math.round( (valor % this.largo) ) );
+		return pos;
+	}
+
+	//Getters y Setters
 	public int getLargo() {
 		return largo;
 	}
@@ -167,17 +186,4 @@ public class Grafo {
 	public void setMapa(Hash mapa) {
 		this.mapa = mapa;
 	}
-
-	public int dispersion(double coordX, double coordY) {
-		double valor= (coordX + coordY)*10000;
-		int pos = (int)Math.abs(Math.round( (valor % this.largo) ) );
-		return pos;
-	}
-	
-	
-	
-	
-	
-	
-	
 }

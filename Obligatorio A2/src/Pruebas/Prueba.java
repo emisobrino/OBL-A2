@@ -10,7 +10,5 @@ public class Prueba {
 		int cantPuntos = 5;
 		sistema.inicializarSistema(cantPuntos);
 		sistema.registrarCiudad("Montevideo", 123412.0, 123421.0);
-		
-		
 	}
 }

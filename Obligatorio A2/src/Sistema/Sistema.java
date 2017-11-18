@@ -12,7 +12,6 @@ import Utilidades.CelularValidator;
 import Utilidades.EmailValidator;
 
 public class Sistema implements ISistema {
-
 	// Properties
 	private Grafo grafo ;
 	private ABBProductor arbolProductor ;
@@ -83,12 +82,15 @@ public class Sistema implements ISistema {
 
 		// Agrego ciudad Si el grafo no esta lleno(cantPuntos) y no existe ningun punto
 		// en esas coordenadas
-		if (!grafo.isFull()) {
-			if (!grafo.existePosicion(coordX, coordY)) {
+		if (!grafo.isFull()) 
+		{
+			if (!grafo.existePosicion(coordX, coordY)) 
+			{
 				grafo.ingresar(ciudad);
+				
 				//para prueba el for
 				for (int i = 0; i < grafo.getListaAdyacencia().length; i++) {
-					if (grafo.getListaAdyacencia()[i].getInicio().getNodo()==null) {
+					if (grafo.getListaAdyacencia()[i].getInicio().getNodo() != null) {
 						System.out.println(i);
 						System.out.println(grafo.getMapa().getTablaHash()[i].getDato().getNombre());
 					}

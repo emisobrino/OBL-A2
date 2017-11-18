@@ -22,23 +22,21 @@ public class Hash {
 	}
 	
 	
-	
+	//Obtener tabla hash
 	public NodoHash[] getTablaHash() {
 		return tablaHash;
 	}
 
 	
-
+	//Es vacio
 	public boolean EsVacio() {
 		return false;
 	}
 	
+	//Agregar nodo
 	public void agregarNodo(int pos, Punto punto) {
 		
 			tablaHash[pos].setDato(punto);
 			tablaHash[pos].setEstado(Estado.OCUPADO);
-		
-		
 	}
-
 }
