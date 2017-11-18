@@ -7,34 +7,45 @@ import Modelo.Plantacion;
 import Modelo.Productor;
 import Modelo.Silo;
 import Sistema.Retorno.Resultado;
-import Utilidades.CedulaValidator;
-import Utilidades.CelularValidator;
-import Utilidades.EmailValidator;
 
 public class Sistema implements ISistema {
 	// Properties
 	private Grafo grafo ;
 	private ABBProductor arbolProductor ;
 
+	//Iniciar sistema
 	@Override
-	public Retorno inicializarSistema(int cantPuntos) {
+	public Retorno inicializarSistema(int cantPuntos)
+	{
 		Retorno ret = new Retorno();
-		grafo= new Grafo(5);
-		arbolProductor = new ABBProductor();
-		//largo del array y hash
-		System.out.println(grafo.getLargo());
-		//cantidad de nodos
-		System.out.println(grafo.getSize());
-		ret.resultado = Resultado.NO_IMPLEMENTADA;
+		
+		if(cantPuntos > 0) {
+			//Creo grafo y arbol productor
+			grafo= new Grafo(cantPuntos);
+			arbolProductor = new ABBProductor();
+			
+			System.out.println("Largo grafo:" + grafo.getLargo());//largo del array y hash
+			System.out.println("Cantidad nodos grafo:" + grafo.getSize());//cantidad de nodos
+		}else {
+			ret.resultado = Resultado.ERROR_1;
+		}
 
 		return ret;
 	}
 
+	//Destruir sistema
 	@Override
-	public Retorno destruirSistema() {
+	public Retorno destruirSistema() 
+	{
 		Retorno ret = new Retorno();
 
-		ret.resultado = Resultado.NO_IMPLEMENTADA;
+		if(grafo != null && arbolProductor != null)
+		{
+			grafo = null;
+			arbolProductor = null;
+			System.gc();
+			ret.resultado = Resultado.OK;
+		}
 
 		return ret;
 	}
@@ -69,8 +80,6 @@ public class Sistema implements ISistema {
 
 		return ret;
 	}
-
-	
 
 	// Registrar ciudad
 	@Override
@@ -160,6 +169,7 @@ public class Sistema implements ISistema {
 		return ret;
 	}
 
+	//Registrar tramo
 	@Override
 	public Retorno registrarTramo(Double coordXi, Double coordYi, Double coordXf, Double coordYf, int peso) {
 		Retorno ret = new Retorno();
@@ -169,6 +179,7 @@ public class Sistema implements ISistema {
 		return ret;
 	}
 
+	//Eliminar tramo
 	@Override
 	public Retorno eliminarTramo(Double coordXi, Double coordYi, Double coordXf, Double coordYf) {
 		Retorno ret = new Retorno();
@@ -178,15 +189,23 @@ public class Sistema implements ISistema {
 		return ret;
 	}
 
+	//Eliminar punto
 	@Override
 	public Retorno eliminarPunto(Double coordX, Double coordY) {
 		Retorno ret = new Retorno();
 
-		ret.resultado = Resultado.NO_IMPLEMENTADA;
+		//Si existe punto en las coordenadas, le pido al grafo que lo elimine
+		if (grafo.existePosicion(coordX, coordY)) {
+			grafo.eliminarPunto(coordX, coordY);
+			ret.resultado = Resultado.OK; 
+		}else {
+			ret.resultado = Resultado.ERROR_1;
+		}
 
 		return ret;
 	}
 
+	//Mapa estado
 	@Override
 	public Retorno mapaEstado() {
 		Retorno ret = new Retorno();
@@ -196,6 +215,7 @@ public class Sistema implements ISistema {
 		return ret;
 	}
 
+	//Ruta a silo mas cercano
 	@Override
 	public Retorno rutaASiloMasCercano(Double coordX, Double coordY) {
 		Retorno ret = new Retorno();
@@ -205,6 +225,7 @@ public class Sistema implements ISistema {
 		return ret;
 	}
 
+	//Listado de plantaciones en ciudad
 	@Override
 	public Retorno listadoDePlantacionesEnCiudad(Double coordX, Double coordY) {
 		Retorno ret = new Retorno();
@@ -214,6 +235,7 @@ public class Sistema implements ISistema {
 		return ret;
 	}
 
+	//Listado de silos
 	@Override
 	public Retorno listadoDeSilos() {
 		Retorno ret = new Retorno();
@@ -223,6 +245,7 @@ public class Sistema implements ISistema {
 		return ret;
 	}
 
+	//Listado de productores
 	@Override
 	public Retorno listadoProductores() {
 		Retorno ret = new Retorno();

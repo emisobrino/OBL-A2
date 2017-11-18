@@ -138,6 +138,12 @@ public class Grafo {
 		return pos;
 	}
 
+	//Eliminar punto 
+	public void eliminarPunto(Double coordX, Double coordY) {
+		
+		
+	}
+	
 	//Getters y Setters
 	public int getLargo() {
 		return largo;
