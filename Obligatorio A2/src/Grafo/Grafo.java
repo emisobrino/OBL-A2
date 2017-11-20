@@ -140,8 +140,13 @@ public class Grafo {
 
 	//Eliminar punto 
 	public void eliminarPunto(Double coordX, Double coordY) {
-		int pos = dispersion(coordX, coordY);
-		eliminarVertice(pos);
+		if(existePunto(coordX, coordY)) {
+			int pos = dispersion(coordX, coordY);
+
+			
+			
+			eliminarVertice(pos);
+		}
 	}
 	
 	//Getters y Setters
