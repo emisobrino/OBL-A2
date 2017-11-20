@@ -93,7 +93,7 @@ public class Sistema implements ISistema {
 		// en esas coordenadas
 		if (!grafo.isFull()) 
 		{
-			if (!grafo.existePosicion(coordX, coordY)) 
+			if (!grafo.existePunto(coordX, coordY)) 
 			{
 				grafo.ingresar(ciudad);
 				
@@ -126,7 +126,7 @@ public class Sistema implements ISistema {
 		// punto en esas coordenadas
 		if (!grafo.isFull()) {
 			if (capacidad > 0) {
-				if (!grafo.existePosicion(coordX, coordY)) {
+				if (!grafo.existePunto(coordX, coordY)) {
 					Plantacion plantacion = new Plantacion( coordX, coordY,nombre, cedula_productor, capacidad);
 					grafo.ingresar(plantacion);
 					ret.resultado = Resultado.OK;
@@ -152,7 +152,7 @@ public class Sistema implements ISistema {
 		// esas coordenadas
 		if (!grafo.isFull()) {
 			if (capacidad > 0) {
-				if (!grafo.existePosicion(coordX, coordY)) {
+				if (!grafo.existePunto(coordX, coordY)) {
 					Silo silo = new Silo(coordX, coordY, nombre, capacidad);
 					grafo.ingresar(silo);
 					ret.resultado = Resultado.OK;
@@ -179,26 +179,15 @@ public class Sistema implements ISistema {
 				if(!grafo.existeTramo(coordXi,coordYi,coordXf,coordYf)) {
 					grafo.agregarTramo(coordXi,coordYi, coordXf,coordYf,peso);
 						ret.resultado=Resultado.OK;
-						
-					
 				}else {
 					ret.resultado= Resultado.ERROR_3;
-					
-					
 				}
 			}else {
 				ret.resultado= Resultado.ERROR_2;
-				
 			}
 		}else {
 			ret.resultado= Resultado.ERROR_1;
-			
-			
 		}
-		
-		
-		
-
 		return ret;
 	}
 
@@ -208,19 +197,15 @@ public class Sistema implements ISistema {
 		Retorno ret = new Retorno();
 
 		if (grafo.existePunto(coordXi, coordYi) && grafo.existePunto(coordXf, coordYf)) {
-			if (grafo.existeTramo(coordXi, coordYi, coordXf, coordYf)) {
-				
+			if (grafo.existeTramo(coordXi, coordYi, coordXf, coordYf))
+			{
 				grafo.eliminarTramo(coordXi, coordYi, coordXf, coordYf);
-					ret.resultado=Resultado.OK;
-				
+				ret.resultado=Resultado.OK;
 			}else {
 				ret.resultado= Resultado.ERROR_2;
 			}
-			
 		}else {
-			
 			ret.resultado= Resultado.ERROR_1;
-			
 		}
 
 		return ret;
@@ -232,7 +217,7 @@ public class Sistema implements ISistema {
 		Retorno ret = new Retorno();
 
 		//Si existe punto en las coordenadas, le pido al grafo que lo elimine
-		if (grafo.existePosicion(coordX, coordY)) {
+		if (grafo.existePunto(coordX, coordY)) {
 			grafo.eliminarPunto(coordX, coordY);
 			ret.resultado = Resultado.OK; 
 		}else {

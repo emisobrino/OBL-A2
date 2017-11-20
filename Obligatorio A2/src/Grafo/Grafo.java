@@ -105,12 +105,6 @@ public class Grafo {
 		return this.usados[v];
 	}
 
-	//Existe posicion
-	public boolean existePosicion(Double coordX, Double coordY) {
-		
-		return false;
-	}
-	
 	//Esta lleno
 	public boolean isFull() {
 		
