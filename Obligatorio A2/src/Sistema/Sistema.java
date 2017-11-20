@@ -169,25 +169,25 @@ public class Sistema implements ISistema {
 				if(!grafo.existeTramo(coordXi,coordYi,coordXf,coordYf)) {
 					grafo.agregarTramo(coordXi,coordYi, coordXf,coordYf,peso);
 						ret.resultado=Resultado.OK;
-						ret.valorString="El tramo se registro exitosamente";
+						
 					
 				}else {
 					ret.resultado= Resultado.ERROR_3;
-					ret.valorString="Ya existe un tramo registrado entre esos puntos";
+					
+					
 				}
 			}else {
 				ret.resultado= Resultado.ERROR_2;
-				ret.valorString="No existe coordi o coordf";
+				
 			}
 		}else {
 			ret.resultado= Resultado.ERROR_1;
-			//hay q agregar el numero del error y el valorString al error?
-			ret.valorString="El peso es menor o igual a 0";
+			
 			
 		}
 		
 		
-		ret.resultado = Resultado.NO_IMPLEMENTADA;
+		
 
 		return ret;
 	}
@@ -196,7 +196,21 @@ public class Sistema implements ISistema {
 	public Retorno eliminarTramo(Double coordXi, Double coordYi, Double coordXf, Double coordYf) {
 		Retorno ret = new Retorno();
 
-		ret.resultado = Resultado.NO_IMPLEMENTADA;
+		if (grafo.existePunto(coordXi, coordYi) && grafo.existePunto(coordXf, coordYf)) {
+			if (grafo.existeTramo(coordXi, coordYi, coordXf, coordYf)) {
+				
+				grafo.eliminarTramo(coordXi, coordYi, coordXf, coordYf);
+					ret.resultado=Resultado.OK;
+				
+			}else {
+				ret.resultado= Resultado.ERROR_2;
+			}
+			
+		}else {
+			
+			ret.resultado= Resultado.ERROR_1;
+			
+		}
 
 		return ret;
 	}

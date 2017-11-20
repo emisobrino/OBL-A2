@@ -7,15 +7,17 @@ public class NodoLista {
 	Punto nodo;
 	int distancia;
 	NodoLista siguiente;
+	int posicion;
 	
 	
 
 	//contructor para tramo
-	public NodoLista(Punto nodo, int peso) {
+	public NodoLista(Punto nodo, int peso, int pos) {
 		
 		this.nodo = nodo;
 		this.distancia = peso;
 		this.siguiente = null;
+		this.posicion = pos;
 	}
 	
 	
@@ -26,8 +28,21 @@ public class NodoLista {
 		this.nodo = null;
 		this.distancia = 0;
 		this.siguiente = null;
+		this.posicion=-1;
 	}
 
+
+
+	
+	public int getPosicion() {
+		return posicion;
+	}
+
+
+
+	public void setPosicion(int posicion) {
+		this.posicion = posicion;
+	}
 
 
 

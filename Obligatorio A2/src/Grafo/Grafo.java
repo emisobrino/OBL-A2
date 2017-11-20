@@ -76,10 +76,7 @@ public class Grafo {
 		
 	}
 
-	//Eliminar arista
-	public void eliminarArista(int origen, int destino) {
-		this.listaAdyacencia[origen].eliminar(destino);	
-	}
+	
 
 	//Es vacio
 	public boolean esVacio() {
@@ -94,8 +91,8 @@ public class Grafo {
 		//Elimino las aristas donde v es miembro
 		this.listaAdyacencia[v] = new ListAdy();	
 		//BUSCAR EN TODOS LOS VERTICES LA ARISTA
-		for (int i = 1; i<=cantNodosActual; i++)
-			this.listaAdyacencia[i].eliminar(v);	
+		/*for (int i = 1; i<=cantNodosActual; i++)
+			this.listaAdyacencia[i].eliminar(v);*/	
 	}
 
 	//Vertices adyacentes
@@ -124,7 +121,7 @@ public class Grafo {
 	public void ingresar(Punto punto) {
 		if ( punto!= null) {
 			int pos= dispersion(punto.getCoordenadaX(), punto.getCoordenadaY());
-			this.listaAdyacencia[pos].agregarPunto(punto);
+			this.listaAdyacencia[pos].agregarPunto(punto,pos);
 			agregarVertice(pos);
 			this.mapa.agregarNodo(pos,punto);
 			cantNodosActual++;
@@ -222,8 +219,18 @@ public class Grafo {
 		Punto ptoOrigen= listaAdyacencia[posOrigen].getInicio().getNodo();
 		Punto ptoDestino= listaAdyacencia[posDestino].getInicio().getNodo();
 		
-		listaAdyacencia[posOrigen].agregarTramo(ptoDestino,peso);
-		listaAdyacencia[posDestino].agregarTramo(ptoOrigen,peso);
+		listaAdyacencia[posOrigen].agregarTramo(ptoDestino,peso,posDestino);
+		listaAdyacencia[posDestino].agregarTramo(ptoOrigen,peso,posOrigen);
+		
+		
+	}
+
+	public void eliminarTramo(Double coordXi, Double coordYi, Double coordXf, Double coordYf) {
+		int posOrigen= dispersion(coordXi, coordYi);
+		int posDestino= dispersion(coordXf, coordYf);
+		
+		this.listaAdyacencia[posOrigen].eliminarTramo(posDestino);
+		this.listaAdyacencia[posDestino].eliminarTramo(posOrigen);
 		
 		
 	}
