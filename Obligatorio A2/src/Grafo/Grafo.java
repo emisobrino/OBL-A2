@@ -192,4 +192,45 @@ public class Grafo {
 	public void setMapa(Hash mapa) {
 		this.mapa = mapa;
 	}
+
+	//true si existe el punto en la lista
+	public boolean existePunto(Double coordX, Double coordY) {
+		int pos = dispersion(coordX, coordY);
+		if (listaAdyacencia[pos].getInicio().getNodo()!=null) {
+			return true;
+		}else {
+
+			return false;
+		}
+	}
+
+	//si existe un tramo entre los dos puntos
+	public boolean existeTramo(Double coordXi, Double coordYi, Double coordXf, Double coordYf) {
+		int posOrigen= dispersion(coordXi, coordYi);
+		int posDestino= dispersion(coordXf, coordYf);
+		Punto ptoOrigen= listaAdyacencia[posOrigen].getInicio().getNodo();
+		Punto ptoDestino= listaAdyacencia[posDestino].getInicio().getNodo();
+		
+		//pregunto si existe un tramo entre pto origen y pto destino
+		if (listaAdyacencia[posOrigen].existe(ptoDestino) && listaAdyacencia[posDestino].existe(ptoOrigen)) {
+			return true;
+		}else {
+
+			return false;	
+		}
+		
+	}
+
+	//agregar tramo, agregar tramo a las dos posiciones, no se agrega nada en el hash
+	public void agregarTramo(Double coordXi, Double coordYi, Double coordXf, Double coordYf, int peso) {
+		int posOrigen= dispersion(coordXi, coordYi);
+		int posDestino= dispersion(coordXf, coordYf);
+		Punto ptoOrigen= listaAdyacencia[posOrigen].getInicio().getNodo();
+		Punto ptoDestino= listaAdyacencia[posDestino].getInicio().getNodo();
+		
+		listaAdyacencia[posOrigen].agregarTramo(ptoDestino,peso);
+		listaAdyacencia[posDestino].agregarTramo(ptoOrigen,peso);
+		
+		
+	}
 }
