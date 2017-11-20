@@ -1,7 +1,7 @@
 package Modelo;
 
 public class Punto {
-
+	//Properties
 	private String nombre;
 	private double coordenadaX;
 	private double coordenadaY;
@@ -44,7 +44,4 @@ public class Punto {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
-	
-	
 }
