@@ -39,4 +39,9 @@ public class Hash {
 			tablaHash[pos].setDato(punto);
 			tablaHash[pos].setEstado(Estado.OCUPADO);
 	}
+	
+	public void eliminarNodo(int pos) {
+		tablaHash[pos]= new NodoHash();
+		tablaHash[pos].setEstado(Estado.ELIMINADO);
+	}
 }

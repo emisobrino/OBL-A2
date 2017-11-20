@@ -10,7 +10,7 @@ public class NodoHash {
 
 	//Constructor con Punto 
 	public NodoHash(Punto dato) {
-		this.estado = EstadoHash.Estado.VACIO;//vacio? o ocupado
+		this.estado = EstadoHash.Estado.OCUPADO;//vacio? o ocupado
 		this.dato = dato;
 	}
 

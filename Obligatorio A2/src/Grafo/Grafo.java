@@ -86,13 +86,8 @@ public class Grafo {
 	//Eliminar vertice
 	public void eliminarVertice(int v) {
 		this.usados[v]=false;
-		this.size --;
-		
-		//Elimino las aristas donde v es miembro
+		this.cantNodosActual--;
 		this.listaAdyacencia[v] = new ListAdy();	
-		//BUSCAR EN TODOS LOS VERTICES LA ARISTA
-		/*for (int i = 1; i<=cantNodosActual; i++)
-			this.listaAdyacencia[i].eliminar(v);*/	
 	}
 
 	//Vertices adyacentes
@@ -129,16 +124,7 @@ public class Grafo {
 		return pos;
 	}
 
-	//Eliminar punto 
-	public void eliminarPunto(Double coordX, Double coordY) {
-		if(existePunto(coordX, coordY)) {
-			int pos = dispersion(coordX, coordY);
-
-			
-			
-			eliminarVertice(pos);
-		}
-	}
+	
 	
 	//Getters y Setters
 	public int getLargo() {
@@ -239,4 +225,20 @@ public class Grafo {
 		
 		
 	}
+	
+	//Eliminar punto 
+		public void eliminarPunto(Double coordX, Double coordY) {
+			
+				int pos = dispersion(coordX, coordY);
+				NodoLista aux =listaAdyacencia[pos].getInicio().getSiguiente();
+				while (aux!=null) {
+					listaAdyacencia[aux.getPosicion()].eliminarTramo(pos);
+					aux=aux.getSiguiente();
+				}
+								
+				eliminarVertice(pos);
+				mapa.eliminarNodo(pos);
+			
+		}
+	
 }
