@@ -98,7 +98,7 @@ public class ABBProductor {
 		if (n == null) {
 			return false;
 		}
-		if (n.getDato().getCedulaInt() == n.getDato().getCedulaInt()) {
+		if (n.getDato().getCedulaInt() == p.getCedulaInt()) {
 			return true;
 		}
 		if (n.getDato().getCedulaInt() > p.getCedulaInt()) {

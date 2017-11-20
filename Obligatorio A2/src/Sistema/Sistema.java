@@ -11,7 +11,7 @@ import Sistema.Retorno.Resultado;
 public class Sistema implements ISistema {
 	// Properties
 	private Grafo grafo ;
-	private ABBProductor arbolProductor ;
+	public ABBProductor arbolProductor ;
 
 	//Iniciar sistema
 	@Override
@@ -65,7 +65,7 @@ public class Sistema implements ISistema {
 					if (!arbolProductor.pertenece(prod)) {
 						arbolProductor.insertar(prod);
 						ret.resultado = Resultado.OK;
-						arbolProductor.listarAscendente();
+						
 					} else {
 						ret.resultado = Resultado.ERROR_4;
 					}
