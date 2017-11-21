@@ -224,8 +224,7 @@ public class Sistema implements ISistema {
 	public Retorno mapaEstado() {
 		Retorno ret = new Retorno();
 
-		grafo.mapaEstado();
-		ret.resultado = Resultado.OK;
+		ret.resultado = Resultado.NO_IMPLEMENTADA;
 
 		return ret;
 	}
@@ -235,6 +234,22 @@ public class Sistema implements ISistema {
 	public Retorno rutaASiloMasCercano(Double coordX, Double coordY) {
 		Retorno ret = new Retorno();
 
+		if(grafo.existePunto(coordX, coordY)&& grafo.esPlantacion(coordX, coordY)) {
+			if(!(grafo.encontroSiloMasCercano(coordX, coordY).equals("")) ) {
+				
+				ret.valorString= grafo.encontroSiloMasCercano(coordX, coordY);
+				ret.resultado=Resultado.OK;
+				
+			}else {
+				ret.resultado= Resultado.ERROR_2;
+			}
+			
+		}else {
+			ret.resultado= Resultado.ERROR_1;
+			
+		}
+		
+		
 		ret.resultado = Resultado.NO_IMPLEMENTADA;
 
 		return ret;

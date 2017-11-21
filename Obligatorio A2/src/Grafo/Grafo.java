@@ -255,4 +255,15 @@ public class Grafo {
 		  e.printStackTrace();
 		}
 	}
+
+	public boolean esPlantacion(Double coordX, Double coordY) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public String encontroSiloMasCercano(Double coordX, Double coordY) {
+		String resultado="";
+		
+		return resultado;
+	}
 }
