@@ -97,15 +97,6 @@ public class Sistema implements ISistema {
 			if (!grafo.existePunto(coordX, coordY)) 
 			{
 				grafo.ingresar(ciudad);
-				
-				//para prueba el for
-				for (int i = 0; i < grafo.getListaAdyacencia().length; i++) {
-					if (grafo.getListaAdyacencia()[i].getInicio().getNodo() != null) {
-						System.out.println(i);
-						System.out.println(grafo.getMapa().getTablaHash()[i].getDato().getNombre());
-					}
-						
-				}
 				ret.resultado = Resultado.OK;
 			} else {
 				ret.resultado = Resultado.ERROR_2;
@@ -262,9 +253,12 @@ public class Sistema implements ISistema {
 	@Override
 	public Retorno listadoDeSilos() {
 		Retorno ret = new Retorno();
-
-		ret.resultado = Resultado.NO_IMPLEMENTADA;
-
+		
+		if(!grafo.esVacio()) {
+			ret.valorString = grafo.listadoSilos();
+			System.out.println(grafo.listadoSilos());
+			ret.resultado = Resultado.OK;
+		}
 		return ret;
 	}
 
@@ -273,6 +267,7 @@ public class Sistema implements ISistema {
 	public Retorno listadoProductores() {
 		Retorno ret = new Retorno();
 
+		//Si el arbol no esta vacio, pido al arbol que me liste los productores ascendentemente
 		if(!arbolProductor.esArbolVacio()) {
 			ret.valorString = arbolProductor.listarAscendente();
 			ret.resultado = Resultado.OK;

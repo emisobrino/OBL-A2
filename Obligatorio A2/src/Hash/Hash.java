@@ -2,6 +2,7 @@ package Hash;
 
 import Hash.EstadoHash.Estado;
 import Modelo.Punto;
+import Modelo.Silo;
 
 public class Hash {
 	//Properties
@@ -36,13 +37,26 @@ public class Hash {
 	
 	//Agregar nodo
 	public void agregarNodo(int pos, Punto punto) {
-		
-			tablaHash[pos].setDato(punto);
-			tablaHash[pos].setEstado(Estado.OCUPADO);
+		tablaHash[pos].setDato(punto);
+		tablaHash[pos].setEstado(Estado.OCUPADO);
 	}
 	
+	//Eliminar nodo
 	public void eliminarNodo(int pos) {
 		tablaHash[pos]= new NodoHash();
 		tablaHash[pos].setEstado(Estado.ELIMINADO);
+	}
+
+	//Listar silos
+	public String listadoSilos() {
+		String cadena = "";
+		
+		for(int i=0 ; i<largoHash ; i++) {
+			if(tablaHash[i].getDato() != null && tablaHash[i].getDato() instanceof Silo) {
+				cadena = cadena + tablaHash[i].getDato().toString();
+			}
+		}
+		
+		return cadena;
 	}
 }

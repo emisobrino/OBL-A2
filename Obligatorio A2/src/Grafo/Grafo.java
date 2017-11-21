@@ -119,12 +119,15 @@ public class Grafo {
 
 	//Dispersion
 	public int dispersion(double coordX, double coordY) {
-		double valor= (coordX + coordY)*10000;
+		double valor= (coordX + coordY)*100000;
 		int pos = (int)Math.abs(Math.round( (valor % this.largo) ) );
 		return pos;
 	}
 
-	
+	//Obtener listado Silos
+	public String listadoSilos() {
+		return mapa.listadoSilos();
+	}
 	
 	//Getters y Setters
 	public int getLargo() {
