@@ -41,10 +41,8 @@ public class ListAdy {
 			this.inicio.setNodo(p);
 			this.inicio.setPosicion(pos);
 		}
-		
-		
-		
 	}
+	
 	// true si el punto destino esta en la lista de tramos 
 	public boolean existe(Punto ptoDestino) {
 		NodoLista aux= inicio;

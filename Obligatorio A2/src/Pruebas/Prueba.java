@@ -17,14 +17,16 @@ public class Prueba {
 		//sistema.arbolProductor.listarAscendente();
 		System.out.println("prueba git");
 		
-		sistema.registrarSilo("Silo A", 12.11, 13.11, 400);
-		sistema.registrarSilo("Silo B", 22.11, 23.11, 2000);
-		sistema.registrarSilo("Silo C", 32.11, 33.11, 300);
-		sistema.registrarSilo("Silo D", 42.11, 43.11, 6000);
+		sistema.registrarSilo("Silo A", -32.92214, -54.51125, 400);
+		sistema.registrarSilo("Silo B", -33.19124, -55.13213, 2000);
+		sistema.registrarSilo("Silo C", -32.95824, -54.22124, 300);
+		sistema.registrarSilo("Silo D", -32.11124, -55.61124, 6000);
 		
 		
 		
 		sistema.listadoProductores();
 		sistema.listadoDeSilos();
+		
+		sistema.mapaEstado();
 	}
 }

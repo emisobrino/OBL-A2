@@ -1,6 +1,8 @@
 package Hash;
 
 import Hash.EstadoHash.Estado;
+import Modelo.Ciudad;
+import Modelo.Plantacion;
 import Modelo.Punto;
 import Modelo.Silo;
 
@@ -32,7 +34,10 @@ public class Hash {
 	
 	//Es vacio
 	public boolean EsVacio() {
-		return false;
+		for (int i = 0; i < largoHash; i++) {
+			if(tablaHash[i].getDato() != null) return false;
+		}
+		return true;
 	}
 	
 	//Agregar nodo
@@ -58,5 +63,32 @@ public class Hash {
 		}
 		
 		return cadena;
+	}
+
+	//Obtener Url Mapa con Puntos
+	public String getURLMapaPuntos() {
+		String urlMapa = "http://maps.googleapis.com/maps/api/staticmap?center=Uruguay&zoom=7&size=1200x600&maptype=roadmap&sensor=false";
+		
+		if(!EsVacio()) {
+			for(int i = 0; i < largoHash; i++ ) {
+				if(tablaHash[i].getDato() != null && tablaHash[i].getDato() instanceof Ciudad){
+					Double coordX = tablaHash[i].getDato().getCoordenadaX();
+					Double coordY = tablaHash[i].getDato().getCoordenadaY();
+					urlMapa = urlMapa + "&markers=color:red%7Clabel:C%7C" + coordX.toString() + "," + coordY.toString() +"&";
+				}
+				if(tablaHash[i].getDato() != null && tablaHash[i].getDato() instanceof Silo){
+					Double coordX = tablaHash[i].getDato().getCoordenadaX();
+					Double coordY = tablaHash[i].getDato().getCoordenadaY();
+					urlMapa = urlMapa + "&markers=color:green%7Clabel:S%7C" + coordX.toString() + "," + coordY.toString() +"&";
+				}
+				
+				if(tablaHash[i].getDato() != null && tablaHash[i].getDato() instanceof Plantacion){
+					Double coordX = tablaHash[i].getDato().getCoordenadaX();
+					Double coordY = tablaHash[i].getDato().getCoordenadaY();
+					urlMapa = urlMapa + "&markers=color:yellow%7Clabel:P%7C" + coordX.toString() + "," + coordY.toString() +"&";
+				}
+			}
+		}
+		return urlMapa;
 	}
 }

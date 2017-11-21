@@ -1,5 +1,8 @@
 package Grafo;
 
+import java.awt.Desktop;
+import java.net.URL;
+
 import Hash.Hash;
 import Modelo.Punto;
 
@@ -230,18 +233,26 @@ public class Grafo {
 	}
 	
 	//Eliminar punto 
-		public void eliminarPunto(Double coordX, Double coordY) {
-			
-				int pos = dispersion(coordX, coordY);
-				NodoLista aux =listaAdyacencia[pos].getInicio().getSiguiente();
-				while (aux!=null) {
-					listaAdyacencia[aux.getPosicion()].eliminarTramo(pos);
-					aux=aux.getSiguiente();
-				}
-								
-				eliminarVertice(pos);
-				mapa.eliminarNodo(pos);
-			
+	public void eliminarPunto(Double coordX, Double coordY) {
+		
+		int pos = dispersion(coordX, coordY);
+		NodoLista aux =listaAdyacencia[pos].getInicio().getSiguiente();
+		while (aux!=null) {
+			listaAdyacencia[aux.getPosicion()].eliminarTramo(pos);
+			aux=aux.getSiguiente();
 		}
+						
+		eliminarVertice(pos);
+		mapa.eliminarNodo(pos);
+	}
 	
+	//Obtener mapa estado
+	public void mapaEstado() {
+		String url = mapa.getURLMapaPuntos();
+		try {
+		  Desktop.getDesktop().browse(new URL(url).toURI());
+		} catch (Exception e) {
+		  e.printStackTrace();
+		}
+	}
 }
