@@ -4,14 +4,11 @@ import Hash.EstadoHash.Estado;
 import Modelo.Punto;
 
 public class Hash {
-
+	//Properties
 	private NodoHash[] tablaHash;
 	private int largoHash;
 	
-	public Hash Vacio() {
-		return null;
-	}
-
+	
 	/// CONSTRUCTOR
 	public Hash(int Cant) {
 		largoHash=Cant;
@@ -21,6 +18,10 @@ public class Hash {
 		}
 	}
 	
+	//Es vacio
+	public Hash Vacio() {
+		return null;
+	}
 	
 	//Obtener tabla hash
 	public NodoHash[] getTablaHash() {

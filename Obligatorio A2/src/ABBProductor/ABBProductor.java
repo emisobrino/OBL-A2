@@ -1,5 +1,7 @@
 package ABBProductor;
 
+import javax.xml.bind.ValidationEvent;
+
 import Modelo.Productor;
 
 public class ABBProductor {
@@ -74,20 +76,24 @@ public class ABBProductor {
 
 	}
 
-	public void listarAscendente() {
+	public String listarAscendente() {
 
-		listarAscendente(this.raiz);
+		return listarAscendente(this.raiz);
 	}
 
-	private void listarAscendente(NodoProductor n) {
+
+	private String listarAscendente(NodoProductor n) {
 		if (n == null) {
-			return;
+			return "";
 		}
-		listarAscendente(n.getIzq());
-		System.out.println(n.getDato());
-		listarAscendente(n.getDer());
+		String cadena = "";
+		cadena = cadena + listarAscendente(n.getIzq());
+		cadena = cadena + n.getDato().toString();	
+		cadena = cadena + listarAscendente(n.getDer());
+			
+		return cadena;
 	}
-
+	
 	public boolean pertenece(Productor p) {
 
 		return pertenece(p, this.raiz);

@@ -273,9 +273,20 @@ public class Sistema implements ISistema {
 	public Retorno listadoProductores() {
 		Retorno ret = new Retorno();
 
-		ret.resultado = Resultado.NO_IMPLEMENTADA;
+		if(!arbolProductor.esArbolVacio()) {
+			ret.valorString = arbolProductor.listarAscendente();
+			ret.resultado = Resultado.OK;
+		}
 
 		return ret;
 	}
 
 }
+
+
+
+
+
+
+
+
