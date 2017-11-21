@@ -224,7 +224,8 @@ public class Sistema implements ISistema {
 	public Retorno mapaEstado() {
 		Retorno ret = new Retorno();
 
-		ret.resultado = Resultado.NO_IMPLEMENTADA;
+		grafo.mapaEstado();
+		ret.resultado = Resultado.OK;
 
 		return ret;
 	}
