@@ -2,6 +2,7 @@ package Grafo;
 
 import javax.xml.stream.events.NotationDeclaration;
 
+import Modelo.Plantacion;
 import Modelo.Punto;
 
 public class ListAdy {
@@ -76,7 +77,7 @@ public class ListAdy {
 		
 	}
 
-	private boolean tramosVacios() {
+	public boolean tramosVacios() {
 		return (this.getInicio().getSiguiente()==null);
 	}
 	
@@ -95,6 +96,24 @@ public class ListAdy {
 			auxInicio.setSiguiente(sig);
 		}
 		
+	}
+
+	public String listadoPlantacionesCiudad() {
+		String resultado = "";
+		// guardo el primer tramo
+		NodoLista aux = inicio.getSiguiente();
+
+		// recorro si no es null
+		while (aux != null) {
+			// pregunto si es plantacion y tiene distancia menor/igual a 20
+			if (aux.getNodo() instanceof Plantacion && aux.getDistancia() <= 20) {
+				// armo el retorno con las coordenadas
+				resultado += aux.getNodo().getCoordenadaX() + ";" + aux.getNodo().getCoordenadaY() + "|";
+			}
+			aux = aux.getSiguiente();
+		}
+
+		return resultado;
 	}
 	
 }
