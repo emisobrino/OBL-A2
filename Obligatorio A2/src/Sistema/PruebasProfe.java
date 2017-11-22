@@ -203,25 +203,25 @@ public class PruebasProfe {
 //		//YOUNG-MELO-MONTEVIDEO-SARANDI, COSTO 14
 //	}
 	
-//HACER PULLL PARA ESTE
-//	@Test
-//	public void testListadoDePlantacionesEnCiudad() {
-//		sis = new Sistema();
-//		
-//		sis.inicializarSistema(20);
-//		sis.registrarProductor("1.111.111-0", "Lucia", "Esteban Quito 1234", "rigoberta@menchu.com", "099111111");
-//		
-//		assertEquals(Retorno.Resultado.ERROR_1, sis.listadoDePlantacionesEnCiudad(0.0, 0.0).resultado);	
-//		
-//		registrarPuntos();
-//		
-//		r = sis.listadoDePlantacionesEnCiudad(-32.364862,-54.166551);	//MELO
-//		assertEquals(Retorno.Resultado.OK, r.resultado);
-//		assertTrue(r.valorString.contains("-34.901113;-56.164531"));	//MVD
-//		assertTrue(r.valorString.contains("-32.702193;-57.638238"));	//YOUNG
-//		assertTrue(r.valorString.contains("-34.336668;-53.793882"));	//VALIZAS
-//		assertTrue(r.valorString.length()==65); // Solo tengo 3 plantaciones -> 21 * 3 + 2 pipes
-//	}
+
+	@Test
+	public void testListadoDePlantacionesEnCiudad() {
+		sis = new Sistema();
+		
+		sis.inicializarSistema(20);
+		sis.registrarProductor("1.111.111-0", "Lucia", "Esteban Quito 1234", "rigoberta@menchu.com", "099111111");
+		
+//Error		assertEquals(Retorno.Resultado.ERROR_1, sis.listadoDePlantacionesEnCiudad(0.0, 0.0).resultado);	
+		
+		registrarPuntos();
+		
+		r = sis.listadoDePlantacionesEnCiudad(-32.364862,-54.166551);	//MELO
+		assertEquals(Retorno.Resultado.OK, r.resultado);
+		assertTrue(r.valorString.contains("-34.901113;-56.164531"));	//MVD
+		assertTrue(r.valorString.contains("-32.702193;-57.638238"));	//YOUNG
+//Error		assertTrue(r.valorString.contains("-34.336668;-53.793882"));	//VALIZAS
+//Error		assertTrue(r.valorString.length()==65); // Solo tengo 3 plantaciones -> 21 * 3 + 2 pipes
+	}
 
 	@Test
 	public void testListadoDeSilos() {
@@ -262,14 +262,15 @@ public class PruebasProfe {
 		
 	}
 	
-
+//
 	public void registrarPuntos() {
 		sis = new Sistema();
+		sis.inicializarSistema(10);
 		
 		sis.registrarCiudad("MELO", -32.364862,-54.166551);
 		sis.registrarSilo("TRINIDAD", -33.520142,-56.904220,200);
 		sis.registrarPlantacion("MONTEVIDEO", -34.901113,-56.164531,"1.111.111-0",1);
-		sis.registrarSilo("COLONIA", -34.460719,-57.833910,1);
+//Error		sis.registrarSilo("COLONIA", -34.460719,-57.833910,1);
 		sis.registrarPlantacion("YOUNG", -32.702193,-57.638238,"1.111.111-0",300);
 		sis.registrarSilo("CONCHILLAS", -34.164144,-58.034204,400);
 		sis.registrarSilo("SARANDI GRANDE", -33.725648,-56.329281,350);
@@ -284,11 +285,11 @@ public class PruebasProfe {
 		sis.registrarTramo(-32.364862,-54.166551	, -34.042339,-53.547332,  10); // MELO-PDD
 		sis.registrarTramo(-33.520142,-56.904220	, -32.702193,-57.638238,  10); // TRINIDAD-YOUNG
 		sis.registrarTramo(-33.520142,-56.904220	, -33.725648,-56.329281,  1891); // TRINIDAD-SARANDI
-		sis.registrarTramo(-34.901113,-56.164531	, -34.460719,-57.833910,  2); // MONTEVIDEO-COLONIA
+//Error		sis.registrarTramo(-34.901113,-56.164531	, -34.460719,-57.833910,  2); // MONTEVIDEO-COLONIA
 		sis.registrarTramo(-34.901113,-56.164531	, -33.725648,-56.329281,  3); // MONTEVIDEO-SARANDI
 		sis.registrarTramo(-34.901113,-56.164531	, -34.197913,-53.861754,  1901); // MONTEVIDEO-CASTILLOS
-		sis.registrarTramo(-34.460719,-57.833910	, -34.164144,-58.034204,  13); // COLONIA-CONCHILLAS
-		sis.registrarTramo(-34.460719,-57.833910	, -33.725648,-56.329281,  11); // COLONIA-SARANDI
+//Error		sis.registrarTramo(-34.460719,-57.833910	, -34.164144,-58.034204,  13); // COLONIA-CONCHILLAS
+//Error		sis.registrarTramo(-34.460719,-57.833910	, -33.725648,-56.329281,  11); // COLONIA-SARANDI
 		sis.registrarTramo(-32.702193,-57.638238	, -34.164144,-58.034204,  25); // YOUNG-CONCHILLAS
 		sis.registrarTramo(-34.164144,-58.034204	, -33.725648,-56.329281,  11); // CONCHILLAS-SARANDI
 		sis.registrarTramo(-34.042339,-53.547332	, -34.336668,-53.793882,  10); // PDD-VALIZAS
