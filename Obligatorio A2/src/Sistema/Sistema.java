@@ -19,13 +19,12 @@ public class Sistema implements ISistema {
 	{
 		Retorno ret = new Retorno();
 		
-		if(cantPuntos > 0) {
+		if(cantPuntos >= 1) {
 			//Creo grafo y arbol productor
 			grafo= new Grafo(cantPuntos);
 			arbolProductor = new ABBProductor();
 			
-			System.out.println("Largo grafo:" + grafo.getLargo());//largo del array y hash
-			System.out.println("Cantidad nodos grafo:" + grafo.getSize());//cantidad de nodos
+			ret.resultado = Resultado.OK;
 		}else {
 			ret.resultado = Resultado.ERROR_1;
 		}
