@@ -1,7 +1,5 @@
 package ABBProductor;
 
-import javax.xml.bind.ValidationEvent;
-
 import Modelo.Productor;
 
 public class ABBProductor {
@@ -20,28 +18,28 @@ public class ABBProductor {
 		return (raiz == null);
 	}
 
-	public void mostrarPreOrder() {
-		mostrarPreOrder(this.raiz);
-	}
+//	public void mostrarPreOrder() {
+//		mostrarPreOrder(this.raiz);
+//	}
 
-	public void mostrarPreOrder(NodoProductor a) {
-		if (a != null) {
-			System.out.print(a.getDato() + "   ");
-			mostrarPreOrder(a.getIzq());
-			mostrarPreOrder(a.getDer());
-		}
-	}
-
-	public int cantNodos(NodoProductor nodo) {
-		int cont = 0;
-		if (nodo != null) {
-			cont += cantNodos(nodo.getIzq()); // cuenta subarbol izquierdo
-			cont++; // contabilizar el nodo visitado
-			cont += cantNodos(nodo.getDer()); // cuenta subarbol derecho
-
-		}
-		return cont;
-	}
+//	public void mostrarPreOrder(NodoProductor a) {
+//		if (a != null) {
+//			System.out.print(a.getDato() + "   ");
+//			mostrarPreOrder(a.getIzq());
+//			mostrarPreOrder(a.getDer());
+//		}
+//	}
+//
+//	public int cantNodos(NodoProductor nodo) {
+//		int cont = 0;
+//		if (nodo != null) {
+//			cont += cantNodos(nodo.getIzq()); // cuenta subarbol izquierdo
+//			cont++; // contabilizar el nodo visitado
+//			cont += cantNodos(nodo.getDer()); // cuenta subarbol derecho
+//
+//		}
+//		return cont;
+//	}
 
 	public void insertar(Productor p) {
 
@@ -94,12 +92,14 @@ public class ABBProductor {
 		return cadena;
 	}
 	
+	//Pertenece
 	public boolean pertenece(Productor p) {
 
 		return pertenece(p, this.raiz);
 
 	}
-
+	
+	//Pertenece busqueda
 	private boolean pertenece(Productor p, NodoProductor n) {
 		if (n == null) {
 			return false;
@@ -114,5 +114,11 @@ public class ABBProductor {
 			return pertenece(p, n.getDer());
 		}
 	}
-
+	
+	//Pertenece CI
+	public boolean pertenece(String ci) {
+		Productor p = new Productor();
+		p.setCedula(ci);
+		return pertenece(p, this.raiz);
+	}
 }

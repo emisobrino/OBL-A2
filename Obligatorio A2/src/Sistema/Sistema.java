@@ -11,7 +11,7 @@ import Sistema.Retorno.Resultado;
 public class Sistema implements ISistema {
 	// Properties
 	private Grafo grafo ;
-	public ABBProductor arbolProductor ;
+	private ABBProductor arbolProductor ;
 
 	//Iniciar sistema
 	@Override
@@ -118,9 +118,14 @@ public class Sistema implements ISistema {
 		if (!grafo.isFull()) {
 			if (capacidad > 0) {
 				if (!grafo.existePunto(coordX, coordY)) {
-					Plantacion plantacion = new Plantacion( coordX, coordY,nombre, cedula_productor, capacidad);
-					grafo.ingresar(plantacion);
-					ret.resultado = Resultado.OK;
+					if(arbolProductor.pertenece(cedula_productor)) {
+						Plantacion plantacion = new Plantacion( coordX, coordY,nombre, cedula_productor, capacidad);
+						grafo.ingresar(plantacion);
+						ret.resultado = Resultado.OK;
+					}else {
+						ret.resultado = Resultado.ERROR_4;
+					}
+						
 				} else {
 					ret.resultado = Resultado.ERROR_3;
 				}

@@ -84,7 +84,7 @@ public class Grafo {
 
 	//Es vacio
 	public boolean esVacio() {
-		return this.size==0;
+		return this.cantNodosActual == 0;
 	}
 
 	//Eliminar vertice

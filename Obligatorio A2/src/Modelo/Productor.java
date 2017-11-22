@@ -25,6 +25,11 @@ public class Productor {
 		this.celular = celular;
 	}
 	
+	//Const vacio
+	public Productor() {
+	
+	}
+	
 	//Obtener cedula casteada a int sin simbolos
 	public int getCedulaInt() {
 		int cedulaFinal = 0;
