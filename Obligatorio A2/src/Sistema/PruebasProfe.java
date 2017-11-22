@@ -15,7 +15,7 @@ public class PruebasProfe {
 	
 	@Before
 	public void setUp() throws Exception {
-		
+		//Saque sistema de lugar por que no andaba
 	}
 
 	@Test
@@ -42,7 +42,7 @@ public class PruebasProfe {
 		sis.inicializarSistema(10);
 		 
 		assertEquals(Retorno.Resultado.ERROR_1, sis.registrarProductor("asdadsasd", "Rigoberta Menchú", "Esteban Quito 1234", "rigoberta@menchu.com", "099123456").resultado);
-//TOCAR	CI	assertEquals(Retorno.Resultado.ERROR_1, sis.registrarProductor("87654321", "Rigoberta Menchú", "Esteban Quito 1234", "rigoberta@menchu.com", "099123456").resultado);
+		assertEquals(Retorno.Resultado.ERROR_1, sis.registrarProductor("87654321", "Rigoberta Menchú", "Esteban Quito 1234", "rigoberta@menchu.com", "099123456").resultado);
 		assertEquals(Retorno.Resultado.ERROR_2, sis.registrarProductor("1.234.567-1", "Rigoberta Menchú", "Esteban Quito 1234", "rigoberta@menchu.com", "099-123-456").resultado);
 		assertEquals(Retorno.Resultado.ERROR_2, sis.registrarProductor("1.234.567-2", "Rigoberta Menchú", "Esteban Quito 1234", "rigoberta@menchu.com", "099.123.456").resultado);
 		assertEquals(Retorno.Resultado.ERROR_3, sis.registrarProductor("1.234.567-3", "Rigoberta Menchú", "Esteban Quito 1234", "rigobertamenchu.com", "099123456").resultado);
@@ -270,7 +270,7 @@ public class PruebasProfe {
 		sis.registrarPlantacion("MONTEVIDEO", -34.901113,-56.164531,"1.111.111-0",1);
 		sis.registrarSilo("COLONIA", -34.460719,-57.822510,1);   //SE CAMBIO APENAS LA COORDENADA 
 		sis.registrarPlantacion("YOUNG", -32.702193,-57.638238,"1.111.111-0",300);
-		sis.registrarSilo("CONCHILLAS", -34.164144,-58.034204,400);
+		sis.registrarSilo("CONCHILLAS", -34.164144,-58.334204,400); //SE CAMBIO APENAS LA COORDENADA 
 		sis.registrarSilo("SARANDI GRANDE", -33.725648,-56.329281,350);
 		sis.registrarPlantacion("CASTILLOS", -34.197913,-53.861754,"1.111.111-0",1);
 		sis.registrarCiudad("PUNTA DEL DIABLO", -34.042339,-53.547332);
@@ -281,17 +281,17 @@ public class PruebasProfe {
 		sis.registrarTramo(-32.364862,-54.166551	, -33.725648,-56.329281,  10); // MELO-SARANDI
 		sis.registrarTramo(-32.364862,-54.166551	, -34.197913,-53.861754,  21); // MELO-CASTILLOS
 		sis.registrarTramo(-32.364862,-54.166551	, -34.042339,-53.547332,  10); // MELO-PDD
-		sis.registrarTramo(-32.364862,-54.166551	, -34.336668,-53.793882,  10); // MELO-VALIZA
+		sis.registrarTramo(-32.364862,-54.166551	, -34.336668,-53.793882,  10); // MELO-VALIZA   // Agreado de tramo
 		
 		sis.registrarTramo(-33.520142,-56.904220	, -32.702193,-57.638238,  10); // TRINIDAD-YOUNG
 		sis.registrarTramo(-33.520142,-56.904220	, -33.725648,-56.329281,  1891); // TRINIDAD-SARANDI
 		sis.registrarTramo(-34.901113,-56.164531	, -34.460719,-57.822510,  2); // MONTEVIDEO-COLONIA
 		sis.registrarTramo(-34.901113,-56.164531	, -33.725648,-56.329281,  3); // MONTEVIDEO-SARANDI
 		sis.registrarTramo(-34.901113,-56.164531	, -34.197913,-53.861754,  1901); // MONTEVIDEO-CASTILLOS
-		sis.registrarTramo(-34.460719,-57.822510	, -34.164144,-58.034204,  13); // COLONIA-CONCHILLAS
+		sis.registrarTramo(-34.460719,-57.822510	, -34.164144,-58.334204,  13); // COLONIA-CONCHILLAS
 		sis.registrarTramo(-34.460719,-57.822510, -33.725648,-56.329281,  11); // COLONIA-SARANDI
-		sis.registrarTramo(-32.702193,-57.638238	, -34.164144,-58.034204,  25); // YOUNG-CONCHILLAS
-		sis.registrarTramo(-34.164144,-58.034204	, -33.725648,-56.329281,  11); // CONCHILLAS-SARANDI
+		sis.registrarTramo(-32.702193,-57.638238	, -34.164144,-58.334204,  25); // YOUNG-CONCHILLAS
+		sis.registrarTramo(-34.164144,-58.334204	, -33.725648,-56.329281,  11); // CONCHILLAS-SARANDI
 		sis.registrarTramo(-34.042339,-53.547332	, -34.336668,-53.793882,  10); // PDD-VALIZAS
 	}
 }

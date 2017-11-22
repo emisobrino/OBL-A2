@@ -99,7 +99,7 @@ public class Productor {
 		// Validar cedula
 		public boolean validarCedula() {
 			CedulaValidator cedulaValidar = new CedulaValidator();
-			return cedulaValidar.validate(this.cedula);
+			return cedulaValidar.validarCedula(cedula);
 		}
 
 		// Validar email
