@@ -250,8 +250,6 @@ public class Sistema implements ISistema {
 			
 		}
 		
-		
-		ret.resultado = Resultado.NO_IMPLEMENTADA;
 
 		return ret;
 	}
@@ -261,8 +259,12 @@ public class Sistema implements ISistema {
 	public Retorno listadoDePlantacionesEnCiudad(Double coordX, Double coordY) {
 		Retorno ret = new Retorno();
 
-		ret.resultado = Resultado.NO_IMPLEMENTADA;
-
+		if ( grafo.existeCiudad(coordX, coordY)) {
+			ret.valorString=grafo.listadoPlantacionesEnCiudad(coordX, coordY);
+			ret.resultado=Resultado.OK;
+		}else {
+			ret.resultado= Resultado.ERROR_1;
+		}
 		return ret;
 	}
 

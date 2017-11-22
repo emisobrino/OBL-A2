@@ -4,6 +4,7 @@ import java.awt.Desktop;
 import java.net.URL;
 
 import Hash.Hash;
+import Modelo.Ciudad;
 import Modelo.Punto;
 
 public class Grafo {
@@ -265,5 +266,26 @@ public class Grafo {
 		String resultado="";
 		
 		return resultado;
+	}
+
+	public boolean existeCiudad(Double coordX, Double coordY) {
+		int pos = dispersion(coordX, coordY);
+		if (listaAdyacencia[pos].getInicio().getNodo()!=null && listaAdyacencia[pos].getInicio().getNodo() instanceof Ciudad ) {
+			return true;
+		}else {
+
+			return false;
+		}
+	}
+
+	public String listadoPlantacionesEnCiudad(Double coordX, Double coordY) {
+		String str="";
+		int pos = dispersion(coordX, coordY);
+		if (listaAdyacencia[pos].tramosVacios()) {
+			str="";
+		}else {
+			str=listaAdyacencia[pos].listadoPlantacionesCiudad();
+		}
+		return str;
 	}
 }
